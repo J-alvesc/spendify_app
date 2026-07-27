@@ -1,5 +1,5 @@
 import { BottomNav } from "./components/layout/BottomNav";
-import { CreditCard } from "./components/layout/ui/CreditCard"; // <-- Importamos aqui!
+import { CreditCard } from "./components/layout/ui/CreditCard"; 
 
 function App() {
   return (
