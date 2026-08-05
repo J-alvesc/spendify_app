@@ -15,7 +15,7 @@ export const meusCartoes: CreditCardProps[] = [
     flag: "VISA",
     lastDigits: "9876",
     limit: "R$ 12.000,00",
-    colorClass: "bg-gradient-to-br from-blue-900 to-blue 800 to-black",
+    colorClass: "bg-gradient-to-br from-blue-900 via-blue 800 to-black",
   },
   {
     id: "3",
@@ -31,7 +31,6 @@ export const meusCartoes: CreditCardProps[] = [
     flag: "VISA",
     lastDigits: "9876",
     limit: "R$ 12.000,00",
-    colorClass: "bg-gradient-to-br from-red-600 to-red-900 800 to-black",
+    colorClass: "bg-gradient-to-br from-red-600 via-red-900 800 to-black",
   },
-  
 ];

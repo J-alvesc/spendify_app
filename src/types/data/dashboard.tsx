@@ -1,5 +1,5 @@
 import { FileText, Calendar, ShoppingCart, Coffee } from "lucide-react";
-import type { SummaryCardProps, PurchaseProps } from "../index";
+import type { SummaryCardProps, TransactionItemProps } from "../index";
 
 export const resumoMes: SummaryCardProps[] = [
   {
@@ -17,7 +17,7 @@ export const resumoMes: SummaryCardProps[] = [
   },
 ];
 
-export const ultimasCompras: PurchaseProps[] = [
+export const ultimasCompras: TransactionItemProps[] = [
   {
     id: "1",
     title: "Supermercado Assaí",

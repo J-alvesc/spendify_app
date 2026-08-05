@@ -26,11 +26,4 @@ export interface TransactionItemProps {
   colorClass: string;
 }
 
-export interface PurchaseProps {
-  id: string;
-  title: string;
-  date: string;
-  amount: string;
-  icon: ReactNode;
-  colorClass: string;
-}
+
