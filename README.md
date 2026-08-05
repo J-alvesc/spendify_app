@@ -14,9 +14,9 @@ O Spendify nasceu da necessidade de simplificar a gestão de cartões de crédit
 
 [x] Gestão Visual de Cartões: Componentes de cartões de crédito dinâmicos com suporte a múltiplas bandeiras e estilos.
 
-[ ] Resumo do Mês: Visualização rápida de faturas atuais e futuras.
+[x] Resumo do Mês: Visualização rápida de faturas atuais e futuras.
 
-[ ] Timeline de Compras: Histórico de transações com categorização visual.
+[x] Timeline de Compras: Histórico de transações com categorização visual.
 
 [ ] Split Inteligente: Divisão de compras integrada ao WhatsApp.
 
