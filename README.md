@@ -1,75 +1,83 @@
-# React + TypeScript + Vite
+💳 Spendify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um aplicativo de gestão financeira moderno, focado em facilidade de uso, divisão de despesas e interface Mobile-First.
 
-Currently, two official plugins are available:
+📖 Sobre o Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+O Spendify nasceu da necessidade de simplificar a gestão de cartões de crédito e a divisão de despesas entre amigos e familiares. Diferente de dashboards financeiros complexos, o Spendify adota uma abordagem Mobile-First, priorizando a ergonomia do usuário através de uma Bottom Navigation Bar (Barra de navegação inferior) e interações fluídas inspiradas nos melhores apps financeiros do mercado.
 
-## React Compiler
+✨ Funcionalidades (Atuais e Planejadas)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+[x] Arquitetura Base: Setup limpo com React, Vite e TypeScript.
 
-## Expanding the ESLint configuration
+[x] UI/UX Mobile-First: Barra de navegação inferior ergonômica.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+[x] Gestão Visual de Cartões: Componentes de cartões de crédito dinâmicos com suporte a múltiplas bandeiras e estilos.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+[ ] Resumo do Mês: Visualização rápida de faturas atuais e futuras.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+[ ] Timeline de Compras: Histórico de transações com categorização visual.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+[ ] Split Inteligente: Divisão de compras integrada ao WhatsApp.
 
-```
+[ ] Integração com Backend: Persistência de dados utilizando Supabase.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🛠️ Tecnologias Utilizadas
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+React: Biblioteca JavaScript para construção de interfaces de usuário.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Vite: Ferramenta de build super rápida para projetos web modernos.
 
-```
+TypeScript: Tipagem estática para JavaScript, garantindo um código mais seguro e escalável.
+
+Tailwind CSS v4: Framework CSS utilitário para estilização rápida e responsiva.
+
+Lucide React: Biblioteca de ícones minimalistas e consistentes.
+
+🚀 Como executar o projeto localmente
+
+Pré-requisitos
+
+Você precisará ter o Node.js instalado na sua máquina (versão LTS recomendada).
+
+Passos de Instalação
+
+Clone este repositório:
+
+git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
+
+
+Acesse a pasta do projeto:
+
+cd spendify_app
+
+
+Instale as dependências:
+
+npm install
+
+
+Inicie o servidor de desenvolvimento:
+
+npm run dev
+
+
+Abra o navegador no endereço indicado no terminal (geralmente http://localhost:5173).
+
+📁 Estrutura de Pastas
+
+src/
+ ├── components/
+ │    └── layout/
+ │         ├── BottomNav.tsx      # Barra de navegação principal
+ │         └── ui/
+ │              └── CreditCard.tsx # Componente reutilizável de cartão
+ ├── App.tsx                      # Componente raiz e orquestrador
+ ├── main.tsx                     # Ponto de entrada do React
+ └── index.css                    # Estilos globais e importação do Tailwind
+
+
+👨‍💻 Autor
+
+Desenvolvido por Jordan.
+Conecte-se comigo no LinkedIn https://www.linkedin.com/in/jordan-alves-60434639b/.
