@@ -1,5 +1,5 @@
 import { FileText, Calendar, ShoppingCart, Coffee } from "lucide-react";
-import type { SummaryCardProps, TransactionItemProps } from "../index";
+import type { SummaryCardProps, TransactionItemProps } from "../types";
 
 export const resumoMes: SummaryCardProps[] = [
   {

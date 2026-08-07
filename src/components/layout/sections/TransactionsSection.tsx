@@ -1,5 +1,5 @@
 import { TransactionItem } from "../../ui/TransactionItem";
-import { ultimasCompras } from "../../../types/data/dashboard";
+import { ultimasCompras } from "../../../data/dashboard";
 
 export function TransactionsSection() {
   return (

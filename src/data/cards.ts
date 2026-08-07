@@ -1,4 +1,4 @@
-import type { CreditCardProps } from "./index";
+import type { CreditCardProps } from "../types";
 
 export const meusCartoes: CreditCardProps[] = [
   {

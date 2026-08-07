@@ -1,5 +1,5 @@
 import { SummaryCard } from "../../ui/SummaryCard";
-import { resumoMes } from "../../../types/data/dashboard";
+import { resumoMes } from "../../../data/dashboard";
 
 export function SummarySections() {
   return (
