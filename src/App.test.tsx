@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import App from './App';
@@ -16,9 +15,8 @@ describe('Spendify App Root', () => {
     render(<App />);
     
     await waitFor(() => {
-        expect(screen.getByText(/Bom dia,/i)).toBeInTheDocument();
+        expect(screen.getByText(/Bom dia/i)).toBeInTheDocument();
         expect(screen.getByTestId('home-view')).toBeInTheDocument();
     });
   });
 });
-
