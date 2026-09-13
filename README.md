@@ -1,83 +1,32 @@
-💳 Spendify
+# React + TypeScript + Vite
 
-Um aplicativo de gestão financeira moderno, focado em facilidade de uso, divisão de despesas e interface Mobile-First.
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-📖 Sobre o Projeto
+Currently, two official plugins are available:
 
-O Spendify nasceu da necessidade de simplificar a gestão de cartões de crédito e a divisão de despesas entre amigos e familiares. Diferente de dashboards financeiros complexos, o Spendify adota uma abordagem Mobile-First, priorizando a ergonomia do usuário através de uma Bottom Navigation Bar (Barra de navegação inferior) e interações fluídas inspiradas nos melhores apps financeiros do mercado.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-✨ Funcionalidades (Atuais e Planejadas)
+## React Compiler
 
-[x] Arquitetura Base: Setup limpo com React, Vite e TypeScript.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-[x] UI/UX Mobile-First: Barra de navegação inferior ergonômica.
+## Expanding the Oxlint configuration
 
-[x] Gestão Visual de Cartões: Componentes de cartões de crédito dinâmicos com suporte a múltiplas bandeiras e estilos.
+If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
 
-[x] Resumo do Mês: Visualização rápida de faturas atuais e futuras.
+```json
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "options": {
+    "typeAware": true
+  },
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+  }
+}
+```
 
-[x] Timeline de Compras: Histórico de transações com categorização visual.
-
-[ ] Split Inteligente: Divisão de compras integrada ao WhatsApp.
-
-[ ] Integração com Backend: Persistência de dados utilizando Supabase.
-
-🛠️ Tecnologias Utilizadas
-
-React: Biblioteca JavaScript para construção de interfaces de usuário.
-
-Vite: Ferramenta de build super rápida para projetos web modernos.
-
-TypeScript: Tipagem estática para JavaScript, garantindo um código mais seguro e escalável.
-
-Tailwind CSS v4: Framework CSS utilitário para estilização rápida e responsiva.
-
-Lucide React: Biblioteca de ícones minimalistas e consistentes.
-
-🚀 Como executar o projeto localmente
-
-Pré-requisitos
-
-Você precisará ter o Node.js instalado na sua máquina (versão LTS recomendada).
-
-Passos de Instalação
-
-Clone este repositório:
-
-git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
-
-
-Acesse a pasta do projeto:
-
-cd spendify_app
-
-
-Instale as dependências:
-
-npm install
-
-
-Inicie o servidor de desenvolvimento:
-
-npm run dev
-
-
-Abra o navegador no endereço indicado no terminal (geralmente http://localhost:5173).
-
-📁 Estrutura de Pastas
-
-src/
- ├── components/
- │    └── layout/
- │         ├── BottomNav.tsx      # Barra de navegação principal
- │         └── ui/
- │              └── CreditCard.tsx # Componente reutilizável de cartão
- ├── App.tsx                      # Componente raiz e orquestrador
- ├── main.tsx                     # Ponto de entrada do React
- └── index.css                    # Estilos globais e importação do Tailwind
-
-
-👨‍💻 Autor
-
-Desenvolvido por Jordan.
-Conecte-se comigo no LinkedIn https://www.linkedin.com/in/jordan-alves-60434639b/.
+See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
