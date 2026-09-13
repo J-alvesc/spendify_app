@@ -1,19 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Inter", sans-serif;
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans;
+    -webkit-tap-highlight-color: transparent;
+    padding-bottom: 80px; /* Espaço para o bottom bar */
+  }
 }
 
-body {
-  @apply bg-slate-50 text-slate-900 font-sans antialiased;
-  -webkit-tap-highlight-color: transparent;
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+  }
 }
 
-/* Esconde a barra de rolagem mas mantém o scroll */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
