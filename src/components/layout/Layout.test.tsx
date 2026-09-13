@@ -1,25 +1,35 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 import { Layout } from './Layout';
+import { PrivacyProvider } from '../../hooks/PrivacyContext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 describe('Layout (100% Coverage)', () => {
   it('deve renderizar a topbar e navbar', () => {
     render(
-      <MemoryRouter>
-        <Layout />
-      </MemoryRouter>
+      <QueryClientProvider client={queryClient}>
+        <PrivacyProvider>
+          <MemoryRouter>
+            <Layout />
+          </MemoryRouter>
+        </PrivacyProvider>
+      </QueryClientProvider>
     );
-    // Checa saudação estática da topbar
-    expect(screen.getByText(/Bom dia,/i)).toBeInTheDocument();
+    expect(screen.getByText(/Bom dia/i)).toBeInTheDocument();
   });
 
   it('deve abrir o modal ao clicar no botão flutuante e fechá-lo depois', () => {
     render(
-      <MemoryRouter>
-        <Layout />
-      </MemoryRouter>
+      <QueryClientProvider client={queryClient}>
+        <PrivacyProvider>
+          <MemoryRouter>
+            <Layout />
+          </MemoryRouter>
+        </PrivacyProvider>
+      </QueryClientProvider>
     );
     
     // O modal inicia fechado
@@ -32,13 +42,10 @@ describe('Layout (100% Coverage)', () => {
     // O modal deve estar aberto agora
     expect(screen.getByText('Nova Compra')).toBeInTheDocument();
 
-    // Testa fechamento do modal pegando o svg de X ou pegando todos os buttons
-    const buttons = screen.getAllByRole('button');
-    // O botão de fechar é o que vem logo após o título, na prática é um button dentro do modal
-    const closeBtn = buttons.find(b => b.className.includes('bg-slate-100'));
-    if (closeBtn) fireEvent.click(closeBtn);
+    // Fecha usando o data-testid do botão de fechar
+    const closeBtn = screen.getByTestId('close-modal-btn');
+    fireEvent.click(closeBtn);
     
     expect(screen.queryByText('Nova Compra')).not.toBeInTheDocument();
   });
 });
-

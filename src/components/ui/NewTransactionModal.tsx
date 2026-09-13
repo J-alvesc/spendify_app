@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { X, Users, CreditCard, Wallet, Smartphone, Calendar, Tag, FileText } from 'lucide-react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { spendifyApi } from '../../lib/api';
@@ -70,7 +70,11 @@ export function NewTransactionModal({ isOpen, onClose }: ModalProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-6 pb-2 sticky top-0 bg-white z-10 rounded-t-3xl">
           <h2 className="text-xl font-bold text-slate-800">Nova Compra</h2>
-          <button onClick={onClose} className="p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition-colors">
+          <button
+            data-testid="close-modal-btn"
+            onClick={onClose}
+            className="p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition-colors cursor-pointer"
+          >
             <X className="w-5 h-5 text-slate-600" />
           </button>
         </div>

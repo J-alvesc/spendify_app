@@ -1,13 +1,15 @@
 import { Outlet, NavLink } from "react-router-dom";
-import { Home, FileText, CreditCard, Users, Plus, Zap } from "lucide-react";
+import { Home, FileText, CreditCard, Users, Plus, Zap, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../../lib/supabase";
 import { spendifyApi } from "../../lib/api";
 import { NewTransactionModal } from "../ui/NewTransactionModal";
+import { usePrivacyContext } from "../../hooks/PrivacyContext";
 
 export function Layout() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { hideValues, toggleHideValues } = usePrivacyContext();
 
   const { data: profile } = useQuery({
     queryKey: ["profile"],
@@ -66,15 +68,32 @@ export function Layout() {
       {/* Header Global */}
       <header className="px-6 pt-10 pb-4 flex items-center justify-between sticky top-0 bg-slate-50/80 backdrop-blur-md z-30">
         <div>
-          <p className="text-sm text-slate-500 font-medium mb-1">Bom dia,</p>
-          <h1 className="text-2xl font-bold text-slate-900 leading-none">
-            {profile?.name?.split(" ")[0] || "Usuário"}
+          <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">
+            Bom dia 👋
+          </p>
+          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight leading-none">
+            {profile?.name?.split(" ")[0] || "Jordan"}
           </h1>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          {/* Botão de Ocultar/Exibir Valores */}
+          <button
+            onClick={toggleHideValues}
+            className="w-10 h-10 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all active:scale-95"
+            title={hideValues ? "Mostrar valores" : "Ocultar valores"}
+            aria-label={hideValues ? "Mostrar valores" : "Ocultar valores"}
+          >
+            {hideValues ? (
+              <EyeOff className="w-4 h-4 text-purple-600" />
+            ) : (
+              <Eye className="w-4 h-4" />
+            )}
+          </button>
+
+          {/* Badge de Score Financeiro */}
           <div
-            className={`bg-gradient-to-r ${theme.wrapper} border px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm relative group cursor-pointer transition-colors duration-300`}
-            onClick={() => alert("Feature Futura: Spendify Score (Em Breve)")}
+            className={`bg-gradient-to-r ${theme.wrapper} border px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm relative group cursor-pointer transition-transform duration-200 active:scale-95`}
+            title="Seu Spendify Score de crédito e saúde financeira"
           >
             <div className="absolute -top-1 -right-1 flex h-3 w-3">
               <span
@@ -87,18 +106,22 @@ export function Layout() {
             <Zap className={`w-4 h-4 ${theme.icon}`} />
             <span className={`text-sm font-bold ${theme.text}`}>{score}</span>
           </div>
-          <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden shadow-sm">
-            {profile?.avatar_url ? (
-              <img
-                src={profile.avatar_url}
-                alt="Avatar"
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-slate-500 font-bold">
-                {profile?.name?.charAt(0) || "U"}
-              </div>
-            )}
+
+          {/* Avatar com Borda */}
+          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-500 p-[2px] shadow-sm">
+            <div className="w-full h-full rounded-full bg-white overflow-hidden flex items-center justify-center">
+              {profile?.avatar_url ? (
+                <img
+                  src={profile.avatar_url}
+                  alt="Avatar"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <span className="text-sm font-black text-slate-700">
+                  {profile?.name?.charAt(0) || "J"}
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -134,8 +157,9 @@ export function Layout() {
           {/* Central FAB */}
           <div className="relative -top-6">
             <button
+              data-testid="fab-button"
               onClick={() => setIsModalOpen(true)}
-              className="w-14 h-14 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-xl shadow-slate-900/20 hover:scale-105 active:scale-95 transition-transform"
+              className="w-14 h-14 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-xl shadow-slate-900/20 hover:scale-105 active:scale-95 transition-transform cursor-pointer"
             >
               <Plus className="w-6 h-6" />
             </button>
