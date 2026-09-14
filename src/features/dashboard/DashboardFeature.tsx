@@ -383,28 +383,28 @@ export function DashboardFeature() {
       </section>
 
       {/* 3. RESUMO INTELIGENTE: FATURA + BARRA DE COMPROMETIMENTO */}
-      <section className="px-6 mb-6">
-        <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100">
-          <div className="flex items-center justify-between mb-4">
-            <div>
+      <section className="px-4 sm:px-6 mb-6">
+        <div className="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-slate-100">
+          <div className="flex items-center justify-between mb-4 gap-2">
+            <div className="min-w-0">
               <div className="flex items-center gap-1.5 text-slate-500 mb-1">
-                <FileText className="w-4 h-4 text-purple-600" />
-                <p className="text-xs font-bold uppercase tracking-wider">
+                <FileText className="w-4 h-4 text-purple-600 shrink-0" />
+                <p className="text-[11px] sm:text-xs font-bold uppercase tracking-wider truncate">
                   {currentCard
                     ? `Fatura • ${currentCard.bank_name || currentCard.brand}`
                     : "Fatura Atual Consolidada"}
                 </p>
               </div>
-              <h3 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight truncate">
                 {formatPrivate(metrics.invoice, formatCurrency)}
               </h3>
             </div>
 
-            <div className="text-right">
-              <span className="text-[11px] font-semibold text-slate-400 block">
+            <div className="text-right shrink-0">
+              <span className="text-[10px] sm:text-[11px] font-semibold text-slate-400 block">
                 Vence em
               </span>
-              <span className="text-sm font-extrabold text-slate-800 bg-slate-100 px-2.5 py-1 rounded-xl">
+              <span className="text-xs sm:text-sm font-extrabold text-slate-800 bg-slate-100 px-2 sm:px-2.5 py-1 rounded-xl whitespace-nowrap">
                 Dia {metrics.dueDay}
               </span>
             </div>
@@ -412,20 +412,20 @@ export function DashboardFeature() {
 
           {/* Barra de Progresso do Limite Comprometido */}
           <div className="space-y-2 pt-2 border-t border-slate-100">
-            <div className="flex justify-between text-xs font-semibold text-slate-600">
-              <span>
+            <div className="flex justify-between items-center text-[11px] sm:text-xs font-semibold text-slate-600 gap-2">
+              <span className="truncate">
                 Limite Livre:{" "}
                 <strong className="text-emerald-600 font-extrabold">
                   {formatPrivate(metrics.available, formatCurrency)}
                 </strong>
               </span>
-              <span>
+              <span className="shrink-0 text-[10px] sm:text-xs text-slate-500">
                 {metrics.percentUsed}% do limite total (
                 {formatPrivate(metrics.totalLimit, formatCurrency)})
               </span>
             </div>
 
-            <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden p-0.5">
+            <div className="w-full bg-slate-100 rounded-full h-2.5 sm:h-3 overflow-hidden p-0.5">
               <div
                 className={`h-full rounded-full transition-all duration-500 ${
                   metrics.percentUsed > 85
@@ -442,18 +442,18 @@ export function DashboardFeature() {
       </section>
 
       {/* 4. QUICK ACTION CHIPS (ATALHOS ERGONÔMICOS) */}
-      <section className="px-6 mb-8">
-        <div className="grid grid-cols-4 gap-2.5">
+      <section className="px-4 sm:px-6 mb-8">
+        <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
           <button
             onClick={() =>
               alert("Direcionando para o detalhamento da fatura...")
             }
-            className="flex flex-col items-center justify-center p-3 bg-white hover:bg-slate-50 border border-slate-100 rounded-2xl shadow-sm transition-all active:scale-95 group cursor-pointer"
+            className="flex flex-col items-center justify-center p-2.5 sm:p-3 bg-white hover:bg-slate-50 border border-slate-100 rounded-2xl shadow-sm transition-all active:scale-95 group cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-              <FileText className="w-5 h-5" />
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-1 sm:mb-1.5 group-hover:scale-110 transition-transform">
+              <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <span className="text-[11px] font-bold text-slate-700 text-center leading-tight">
+            <span className="text-[10px] sm:text-[11px] font-bold text-slate-700 text-center leading-tight truncate max-w-full">
               Ver Fatura
             </span>
           </button>
@@ -466,12 +466,12 @@ export function DashboardFeature() {
                 toggleLock(cards[0].id);
               }
             }}
-            className="flex flex-col items-center justify-center p-3 bg-white hover:bg-slate-50 border border-slate-100 rounded-2xl shadow-sm transition-all active:scale-95 group cursor-pointer"
+            className="flex flex-col items-center justify-center p-2.5 sm:p-3 bg-white hover:bg-slate-50 border border-slate-100 rounded-2xl shadow-sm transition-all active:scale-95 group cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-              <Lock className="w-5 h-5" />
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-1 sm:mb-1.5 group-hover:scale-110 transition-transform">
+              <Lock className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <span className="text-[11px] font-bold text-slate-700 text-center leading-tight">
+            <span className="text-[10px] sm:text-[11px] font-bold text-slate-700 text-center leading-tight truncate max-w-full">
               {currentCard && isCardLocked[currentCard.id]
                 ? "Desbloquear"
                 : "Bloquear"}
@@ -480,12 +480,12 @@ export function DashboardFeature() {
 
           <button
             onClick={() => setIsNewGoalModalOpen(true)}
-            className="flex flex-col items-center justify-center p-3 bg-white hover:bg-slate-50 border border-slate-100 rounded-2xl shadow-sm transition-all active:scale-95 group cursor-pointer"
+            className="flex flex-col items-center justify-center p-2.5 sm:p-3 bg-white hover:bg-slate-50 border border-slate-100 rounded-2xl shadow-sm transition-all active:scale-95 group cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-              <TrendingUp className="w-5 h-5" />
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-1 sm:mb-1.5 group-hover:scale-110 transition-transform">
+              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <span className="text-[11px] font-bold text-slate-700 text-center leading-tight">
+            <span className="text-[10px] sm:text-[11px] font-bold text-slate-700 text-center leading-tight truncate max-w-full">
               Ajustar Meta
             </span>
           </button>
@@ -494,12 +494,12 @@ export function DashboardFeature() {
             onClick={() =>
               alert("Leitor de Cupons e Comprovantes com IA (Em Breve)")
             }
-            className="flex flex-col items-center justify-center p-3 bg-white hover:bg-slate-50 border border-slate-100 rounded-2xl shadow-sm transition-all active:scale-95 group cursor-pointer"
+            className="flex flex-col items-center justify-center p-2.5 sm:p-3 bg-white hover:bg-slate-50 border border-slate-100 rounded-2xl shadow-sm transition-all active:scale-95 group cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-              <Sparkles className="w-5 h-5" />
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-1 sm:mb-1.5 group-hover:scale-110 transition-transform">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <span className="text-[11px] font-bold text-slate-700 text-center leading-tight">
+            <span className="text-[10px] sm:text-[11px] font-bold text-slate-700 text-center leading-tight truncate max-w-full">
               Escanear IA
             </span>
           </button>
@@ -690,30 +690,30 @@ export function DashboardFeature() {
             filteredTransactions.slice(0, 6).map((tx) => (
               <div
                 key={tx.id}
-                className="flex items-center justify-between p-4 hover:bg-slate-50/80 transition-colors"
+                className="flex items-center justify-between p-3.5 sm:p-4 hover:bg-slate-50/80 transition-colors gap-3"
               >
-                <div className="flex items-center gap-3.5">
-                  <div className="w-11 h-11 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shrink-0">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 shrink-0">
                     {tx.category.toLowerCase().includes("mercado") ? (
-                      <ShoppingCart className="w-5 h-5 text-emerald-600" />
+                      <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
                     ) : tx.category.toLowerCase().includes("alimentação") ? (
-                      <Coffee className="w-5 h-5 text-amber-600" />
+                      <Coffee className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
                     ) : tx.category.toLowerCase().includes("streaming") ||
                       tx.category.toLowerCase().includes("lazer") ? (
-                      <Tv className="w-5 h-5 text-indigo-600" />
+                      <Tv className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
                     ) : tx.category.toLowerCase().includes("tecnologia") ? (
-                      <Smartphone className="w-5 h-5 text-blue-600" />
+                      <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                     ) : (
-                      <Tag className="w-5 h-5 text-slate-600" />
+                      <Tag className="w-4 h-4 sm:w-5 sm:h-5 text-slate-600" />
                     )}
                   </div>
 
-                  <div>
-                    <p className="font-bold text-sm text-slate-900 leading-tight">
+                  <div className="min-w-0">
+                    <p className="font-bold text-xs sm:text-sm text-slate-900 leading-tight truncate">
                       {tx.description}
                     </p>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[11px] text-slate-400">
+                    <div className="flex items-center gap-1.5 sm:gap-2 mt-1 flex-wrap">
+                      <span className="text-[10px] sm:text-[11px] text-slate-400 shrink-0">
                         {tx.date
                           ? new Date(tx.date + "T12:00:00Z").toLocaleDateString(
                               "pt-BR",
@@ -721,11 +721,11 @@ export function DashboardFeature() {
                             )
                           : "Hoje"}
                       </span>
-                      <span className="text-[10px] bg-slate-100 text-slate-600 font-semibold px-2 py-0.5 rounded-md">
+                      <span className="text-[9px] sm:text-[10px] bg-slate-100 text-slate-600 font-semibold px-1.5 sm:px-2 py-0.5 rounded-md truncate max-w-[110px]">
                         {tx.category}
                       </span>
                       {tx.buyer_name && tx.buyer_name !== "Jordan" && (
-                        <span className="text-[10px] bg-purple-100 text-purple-700 font-bold px-1.5 py-0.5 rounded-md">
+                        <span className="text-[9px] sm:text-[10px] bg-purple-100 text-purple-700 font-bold px-1.5 py-0.5 rounded-md truncate max-w-[90px]">
                           {tx.buyer_name}
                         </span>
                       )}
@@ -733,12 +733,12 @@ export function DashboardFeature() {
                   </div>
                 </div>
 
-                <div className="text-right">
-                  <p className="font-extrabold text-sm text-slate-900">
+                <div className="text-right shrink-0">
+                  <p className="font-extrabold text-xs sm:text-sm text-slate-900 whitespace-nowrap">
                     {formatPrivate(tx.amount, formatCurrency)}
                   </p>
                   {tx.installments > 1 && (
-                    <span className="text-[10px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">
+                    <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">
                       {tx.current_installment
                         ? `${tx.current_installment}/${tx.installments}x`
                         : `${tx.installments}x`}
