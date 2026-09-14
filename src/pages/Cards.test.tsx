@@ -1,28 +1,33 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
+import { MemoryRouter } from 'react-router-dom';
 import { Cards } from './Cards';
 import { PrivacyProvider } from '../hooks/PrivacyContext';
 
 describe('Cards Page (Fidelidade ao Protótipo & Regras de Negócio)', () => {
   it('deve renderizar a tela de cartões com card de limite total consolidado e lista de cartões', () => {
     render(
-      <PrivacyProvider>
-        <Cards />
-      </PrivacyProvider>
+      <MemoryRouter>
+        <PrivacyProvider>
+          <Cards />
+        </PrivacyProvider>
+      </MemoryRouter>
     );
 
     expect(screen.getByTestId('cards-view')).toBeInTheDocument();
     expect(screen.getByText('Limite Total Disponível')).toBeInTheDocument();
-    expect(screen.getByText('MASTERCARD')).toBeInTheDocument();
-    expect(screen.getByText('VISA INFINITE')).toBeInTheDocument();
+    expect(screen.getAllByText('MASTERCARD').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('VISA INFINITE').length).toBeGreaterThan(0);
     expect(screen.getByRole('button', { name: /Novo/i })).toBeInTheDocument();
   });
 
   it('deve abrir o modal de configuração ao clicar em Configurar Cartão', () => {
     render(
-      <PrivacyProvider>
-        <Cards />
-      </PrivacyProvider>
+      <MemoryRouter>
+        <PrivacyProvider>
+          <Cards />
+        </PrivacyProvider>
+      </MemoryRouter>
     );
 
     const configButtons = screen.getAllByText('Configurar Cartão');
@@ -41,9 +46,11 @@ describe('Cards Page (Fidelidade ao Protótipo & Regras de Negócio)', () => {
 
   it('deve abrir o modal para cadastrar novo cartão ao clicar em Novo', () => {
     render(
-      <PrivacyProvider>
-        <Cards />
-      </PrivacyProvider>
+      <MemoryRouter>
+        <PrivacyProvider>
+          <Cards />
+        </PrivacyProvider>
+      </MemoryRouter>
     );
 
     const novoBtn = screen.getByRole('button', { name: /Novo/i });
