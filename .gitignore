@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 .env
 coverage/
+Imagens_Protitipos/
+[iI]magens_[pP]rotitipos/

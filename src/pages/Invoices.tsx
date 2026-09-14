@@ -82,9 +82,20 @@ const cardInvoiceSettings: Record<string, CardInvoiceMeta> = {
 
 export function Invoices() {
   const { formatPrivate } = usePrivacyContext();
-
+  
   const cards: MockCard[] = initialMockCards;
-  const [selectedCardId, setSelectedCardId] = useState<string>("card-nubank");
+  const [selectedCardId, setSelectedCardId] = useState<string>(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const cardParam = params.get("cardId");
+      if (cardParam && cards.some((c) => c.id === cardParam)) {
+        return cardParam;
+      }
+    } catch {
+      // fallback seguro
+    }
+    return "card-nubank";
+  });
   const [selectedMonth, setSelectedMonth] = useState<string>("Julho");
 
   // Estado de edição do valor no banco
@@ -492,14 +503,14 @@ export function Invoices() {
       </section>
 
       {/* 2. TÍTULO E SELETOR DE MÊS */}
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
         <div>
-          <div className="flex items-center gap-2">
-            <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+          <div className="flex items-center gap-2 flex-wrap">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
               Fatura de {selectedMonth}
             </h2>
             <span
-              className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
+              className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider shrink-0 ${
                 activeMeta.status === "fechada"
                   ? "bg-amber-100 text-amber-800 border border-amber-200"
                   : activeMeta.status === "aberta"
@@ -516,7 +527,7 @@ export function Invoices() {
           </p>
         </div>
 
-        <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-xl p-1 shadow-sm">
+        <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-xl p-1 shadow-sm self-start sm:self-auto">
           {["Junho", "Julho", "Agosto"].map((m) => (
             <button
               key={m}
@@ -535,7 +546,7 @@ export function Invoices() {
 
       {/* 3. CARD DE CONFERÊNCIA DE VALORES & CONCILIAÇÃO BANCÁRIA */}
       <section className="mb-5">
-        <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 relative overflow-hidden">
+        <div className="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-slate-100 relative overflow-hidden">
           {/* Barra lateral indicadora de status */}
           <div
             className={`absolute left-0 top-0 bottom-0 w-2.5 ${
@@ -544,7 +555,7 @@ export function Invoices() {
           />
 
           {/* Cabeçalho da Conferência */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
             <div>
               <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                 Conferência de Valores
@@ -555,7 +566,7 @@ export function Invoices() {
             </div>
 
             <span
-              className={`text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5 ${
+              className={`text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5 self-start sm:self-auto ${
                 isFullyReconciled
                   ? "bg-emerald-50 text-emerald-700 border border-emerald-200/70"
                   : "bg-amber-50 text-amber-700 border border-amber-200/70"
@@ -576,29 +587,29 @@ export function Invoices() {
           </div>
 
           {/* Comparativo de Valores */}
-          <div className="grid grid-cols-2 divide-x divide-slate-100 gap-4 pt-1 mb-4">
+          <div className="grid grid-cols-2 divide-x divide-slate-100 gap-3 sm:gap-4 pt-1 mb-4">
             {/* Calculado pelo App */}
-            <div>
-              <div className="flex items-center justify-between">
-                <p className="text-[11px] font-semibold text-slate-400">
+            <div className="min-w-0 pr-1">
+              <div className="flex items-center justify-between gap-1 flex-wrap">
+                <p className="text-[11px] font-semibold text-slate-400 truncate">
                   Calculado pelo App
                 </p>
-                <span className="text-[10px] font-extrabold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">
+                <span className="text-[10px] font-extrabold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded shrink-0">
                   {appItemCount} itens
                 </span>
               </div>
-              <p className="text-2xl font-black text-slate-900 tracking-tight mt-1">
+              <p className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1 truncate">
                 {formatPrivate(calculatedTotal, formatCurrency)}
               </p>
             </div>
 
             {/* Valor no Banco (Editável) */}
-            <div className="pl-4">
-              <div className="flex items-center justify-between">
-                <p className="text-[11px] font-semibold text-slate-400">
+            <div className="pl-3 sm:pl-4 min-w-0">
+              <div className="flex items-center justify-between gap-1 flex-wrap">
+                <p className="text-[11px] font-semibold text-slate-400 truncate">
                   Valor no Banco
                 </p>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1 shrink-0">
                   <span className="text-[10px] font-extrabold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">
                     {bankItemCount} itens
                   </span>
@@ -609,7 +620,7 @@ export function Invoices() {
                       );
                       setIsEditingBankValue(true);
                     }}
-                    className="text-slate-400 hover:text-purple-600 cursor-pointer transition-colors p-1"
+                    className="text-slate-400 hover:text-purple-600 cursor-pointer transition-colors p-0.5"
                     title="Editar valor oficial da fatura no banco"
                   >
                     <Edit2 className="w-3.5 h-3.5" />
@@ -618,25 +629,25 @@ export function Invoices() {
               </div>
 
               {isEditingBankValue ? (
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-sm font-bold text-slate-400">R$</span>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <span className="text-xs font-bold text-slate-400">R$</span>
                   <input
                     type="text"
                     value={editInputValue}
                     onChange={(e) => setEditInputValue(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && saveBankValue()}
                     autoFocus
-                    className="w-28 text-lg font-black text-slate-900 border-b-2 border-purple-600 outline-none bg-transparent"
+                    className="w-20 sm:w-28 text-sm sm:text-lg font-black text-slate-900 border-b-2 border-purple-600 outline-none bg-transparent"
                   />
                   <button
                     onClick={saveBankValue}
-                    className="p-1.5 bg-slate-900 text-white rounded-lg text-xs hover:bg-slate-800 cursor-pointer"
+                    className="p-1 bg-slate-900 text-white rounded-lg text-xs hover:bg-slate-800 cursor-pointer"
                   >
-                    <Check className="w-3.5 h-3.5" />
+                    <Check className="w-3 h-3" />
                   </button>
                 </div>
               ) : (
-                <p className="text-2xl font-black text-slate-900 tracking-tight mt-1">
+                <p className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1 truncate">
                   {formatPrivate(currentBankTotal, formatCurrency)}
                 </p>
               )}

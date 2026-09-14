@@ -4,6 +4,8 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Layout } from "./components/layout/Layout";
 import { Dashboard } from "./pages/Dashboard";
 import { Invoices } from "./pages/Invoices";
+import { Cards } from "./pages/Cards";
+import { People } from "./pages/People";
 import { PrivacyProvider } from "./hooks/PrivacyContext";
 
 const queryClient = new QueryClient({
@@ -41,14 +43,8 @@ export default function App() {
                 <Route index element={<Navigate to="/dashboard" replace />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="invoices" element={<Invoices />} />
-                <Route
-                  path="cards"
-                  element={<div className="p-6">Cartoes</div>}
-                />
-                <Route
-                  path="people"
-                  element={<div className="p-6">Pessoas</div>}
-                />
+                <Route path="cards" element={<Cards />} />
+                <Route path="people" element={<People />} />
               </Route>
             </Routes>
           </BrowserRouter>
