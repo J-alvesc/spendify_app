@@ -8,7 +8,8 @@ describe('utils (100% Coverage)', () => {
     // Resolução de conflito (p-6 substitui p-4)
     expect(cn('p-4', 'p-6')).toBe('p-6');
     // Ignorar condicionais falsos
-    expect(cn('p-4', false && 'p-2', undefined, 'bg-red-500')).toBe('p-4 bg-red-500');
+    const isHidden = false;
+    expect(cn('p-4', isHidden && 'p-2', undefined, 'bg-red-500')).toBe('p-4 bg-red-500');
   });
 
   it('formatCurrency() deve formatar valores em Real (BRL)', () => {

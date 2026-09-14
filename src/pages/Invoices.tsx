@@ -82,9 +82,20 @@ const cardInvoiceSettings: Record<string, CardInvoiceMeta> = {
 
 export function Invoices() {
   const { formatPrivate } = usePrivacyContext();
-
+  
   const cards: MockCard[] = initialMockCards;
-  const [selectedCardId, setSelectedCardId] = useState<string>("card-nubank");
+  const [selectedCardId, setSelectedCardId] = useState<string>(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const cardParam = params.get("cardId");
+      if (cardParam && cards.some((c) => c.id === cardParam)) {
+        return cardParam;
+      }
+    } catch {
+      // fallback seguro
+    }
+    return "card-nubank";
+  });
   const [selectedMonth, setSelectedMonth] = useState<string>("Julho");
 
   // Estado de edição do valor no banco
