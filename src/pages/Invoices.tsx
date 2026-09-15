@@ -82,6 +82,7 @@ const cardInvoiceSettings: Record<string, CardInvoiceMeta> = {
 
 export function Invoices() {
   const { formatPrivate } = usePrivacyContext();
+
   
   const cards: MockCard[] = initialMockCards;
   const [selectedCardId, setSelectedCardId] = useState<string>(() => {
